@@ -1,0 +1,4 @@
+# Contains production secrets
+.env
+
+node_modules/
