@@ -2,14 +2,19 @@
   "name": "express-postgres-template",
   "version": "0.0.1",
   "description": "A template of an express.js server using postgres",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
+    "knex": "knex --knexfile ./src/database/knexfile.js",
+    "start": "node src/server.js"
   },
   "author": "Vedant Roy",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "find-config": "^1.0.0",
     "knex": "^0.20.10",
     "pg": "^7.18.2"
-  }
+  },
+  "devDependencies": {}
 }
