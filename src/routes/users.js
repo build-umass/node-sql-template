@@ -18,7 +18,10 @@ router.get('/:user', async (req, res) => {
 // user with the given information to the "users" table
 // if and only if that user does not exist
 router.post('/:user', async (req, res) => {
-
+    // TODO: Get the username
+    // Find this user in the database
+    // Update the row in the database with the new user information
+    // This information is stored in the post request body as a JSON string
 })
 
 module.exports = router
