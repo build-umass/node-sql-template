@@ -58,3 +58,19 @@ knexfile.js is used in 2 ways:
 knex has the concept of "seeds" and "migrations"
 - "seeds" initialize the database/populate it with some starting data
 - "migrations" allow you to update your database schema/revert database changes
+
+# General Understanding
+For each request, several factors must be considered:
+- Validation of input
+  - Do the relevant url query parameters exist?
+  - Is the body correctly formatted?
+    - Example: If the request handler parses the request body into JSON, the request body text must be JSON.
+- Error handling
+  - Each call to knex.js can result in 3 states:
+    - success
+    - An execution failure (invalid table name/column name)
+    - A fatal failure (the database itself crashed/connection to the database was lost)
+
+    Rather than handling the last result everytime you call knex.js, you can let the exception be thrown and have error handling code (middleware) deal with it.
+## Links
+- The "guide" tab on https://expressjs.com/
