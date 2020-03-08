@@ -18,6 +18,8 @@ router.get('/:user', async (req, res) => {
 // POST [base]/[a username] adds a new
 // user with the given information to the "users" table
 // or updates an existing user
+// Example client request:
+//curl -X POST -d '{"oranges":12}' -H "Content-Type: application/json"  http://localhost:8080/users/bill
 router.post('/:user', express.json(), async (req, res) => {
     if (req.body === undefined || req.body.oranges === undefined) {
         // TODO:
