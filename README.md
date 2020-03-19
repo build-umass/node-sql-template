@@ -14,8 +14,10 @@ Copy the .env.sample file to a .env file and fill in the missing values
   - The .env file should not be checked into the repository, it contains production secrets!
   - When starting up, the server will read the database credentials/other info from the .env file.  
 
-Run `npm run knex seed:run` to setup the initial database state  
+Run `npm run knex seed:run` and  `npm run knex migrate:latest` to setup the initial database state  
 Run `npm run start` to start the server
+
+
 
 ### Setup Postgres
 These are some helpful tutorials:
