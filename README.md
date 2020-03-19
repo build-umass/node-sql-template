@@ -32,6 +32,8 @@ These are some helpful tutorials:
       - Change the line below `# Database adminstrative login by Unix domain socket` from `local all postgres peer` to `local all postgres trust`.
 - https://github.com/malnvenshorn/OctoPrint-FilamentManager/wiki/Setup-PostgreSQL-on-Arch-Linux
   - For Linux (Arch)
+  - Use `sudo systemctl [start|restart|stop|etc.] postgresql.service` to manage the DB.
+    - This might also work on other Linux distros
 
 # Managing the Database
 This template uses [knex.js](http://knexjs.org/) for interacting with the database. knex abstracts over SQL, so instead of writing
