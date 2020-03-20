@@ -1,4 +1,4 @@
-# Contains production secrets
+# Contains production secrets. Don't check this into Git!
 .env
 
 node_modules/
