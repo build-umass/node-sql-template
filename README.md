@@ -2,17 +2,6 @@
 This repository contains sample code for setting up a Node.js server that uses Express.js to handle HTTP requests and gets data from a SQL backend (postgres in this example).
 
 ## Setup
-### Installing Docker
-Google the instructions for your OS.
-
-**Helpful Commands/Stuff for Installing Docker on Linux**:
-- Install Docker with your package manager
-- `sudo usermod -a -G docker <your username>`
-- Might have to do: `newgrp docker`
-- `sudo systemctl start docker.service`
-- `sudo systemctl enable docker.service`
-- You might need to restart the docker service/relogin your user account.
-
 ### Setting up the Postgres Docker Container
 If you want to manually install Postgres, go to "Manually Install Postgres".
 
