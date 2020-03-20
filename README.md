@@ -2,6 +2,23 @@
 This repository contains sample code for setting up a Node.js server that uses Express.js to handle HTTP requests and gets data from a SQL backend (postgres in this example).
 
 ## Setup
+### Installing Docker
+Google the instructions for your OS.
+
+**Helpful Commands/Stuff for Installing Docker on Linux**:
+- Install Docker with your package manager
+- `sudo usermod -a -G docker <your username>`
+- Might have to do: `newgrp docker`
+- `sudo systemctl start docker.service`
+- `sudo systemctl enable docker.service`
+- You might need to restart the docker service/relogin your user account.
+
+### Setting up the Postgres Docker Container
+If you want to manually install Postgres, go to "Manually Install Postgres".
+
+Otherwise, look at the [easy-postgres-docker repository](https://github.com/build-umass/easy-postgres-docker)
+
+### Setting up the Project
 Clone the repository and install the project dependencies
   - You might want to delete package-lock.json before running npm install so your dependencies are up-to-date.
 ```
@@ -9,31 +26,18 @@ git clone github.com/build-umass/node-sql-template
 cd node-sql-template
 npm install
 ```
-For local development, install postgres on your machine.  
 Copy the .env.sample file to a .env file and fill in the missing values
-  - The .env file should not be checked into the repository, it contains production secrets!
   - When starting up, the server will read the database credentials/other info from the .env file.  
 
-Run `npm run knex seed:run` to setup the initial database state  
-Run `npm run start` to start the server
-
-### Setup Postgres
-These are some helpful tutorials:
-- https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
-  - For Mac OS
-  - For Linux (Ubuntu)
-    - install from apt
-    - Use pg_ctlcluster instead of brew services start postgresql
-    - pg_lsclusters for listing postgres clusters
-    - pg_ctlcluster \<version> \<cluster> <action: start|stop|restart|reload>
-    - Might have to modify "pg_hba.conf":
-      - Find file with `find / -name 'pg_hba.conf' 2>/dev/null`
-      - Change the line below `# "local" is for Unix domain socket connections only` from `local all all peer` to `local all all trust`.
-      - Change the line below `# Database adminstrative login by Unix domain socket` from `local all postgres peer` to `local all postgres trust`.
-- https://github.com/malnvenshorn/OctoPrint-FilamentManager/wiki/Setup-PostgreSQL-on-Arch-Linux
-  - For Linux (Arch)
-  - Use `sudo systemctl [start|restart|stop|etc.] postgresql.service` to manage the DB.
-    - This might also work on other Linux distros
+Setup the initial database state:
+```
+npm run knex seed:run
+npm run knex migrate:latest
+```
+Start the server:
+```
+npm run start
+```
 
 # Managing the Database
 This template uses [knex.js](http://knexjs.org/) for interacting with the database. knex abstracts over SQL, so instead of writing
@@ -76,3 +80,22 @@ For each request, several factors must be considered:
     Rather than handling the last result everytime you call knex.js, you can let the exception be thrown and have error handling code (middleware) deal with it.
 ## Links
 - The "guide" tab on https://expressjs.com/
+
+# Misc
+## Manually Install Postgres
+These are some helpful tutorials:
+- https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
+  - For Mac OS
+  - For Linux (Ubuntu)
+    - install from apt
+    - Use pg_ctlcluster instead of brew services start postgresql
+    - pg_lsclusters for listing postgres clusters
+    - pg_ctlcluster \<version> \<cluster> <action: start|stop|restart|reload>
+    - Might have to modify "pg_hba.conf":
+      - Find file with `find / -name 'pg_hba.conf' 2>/dev/null`
+      - Change the line below `# "local" is for Unix domain socket connections only` from `local all all peer` to `local all all trust`.
+      - Change the line below `# Database adminstrative login by Unix domain socket` from `local all postgres peer` to `local all postgres trust`.
+- https://github.com/malnvenshorn/OctoPrint-FilamentManager/wiki/Setup-PostgreSQL-on-Arch-Linux
+  - For Linux (Arch)
+    - Use `sudo systemctl [start|restart|stop|etc.] postgresql.service` to manage the DB.
+      - This might also work on other Linux distros
